@@ -214,12 +214,12 @@ class Cars(Translations):
                  'plate': self.plate}]
 
         if Cars.exist_file(self.filepath):
-            with open(PATH + '/carsDATA.csv', 'a', newline='') as file:
+            with open(PATH + '/data.csv', 'a', newline='') as file:
                 csv_writer = csv.DictWriter(file, fieldnames=fieldnames)
                 for i in data:
                     csv_writer.writerow(i)
         else:
-            with open(PATH + '/carsDATA.csv', 'a', newline='') as file:
+            with open(PATH + '/data.csv', 'a', newline='') as file:
                 csv_writer = csv.DictWriter(file, fieldnames=fieldnames)
                 csv_writer.writeheader()  # Only execute if the file does not exist
                 for i in data:
