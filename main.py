@@ -23,7 +23,16 @@ class Data:
     def file_name(cls):
         filename = 'carsDATA'
         return filename
+    
+    @classmethod
+    def exist_file(cls, filepath):
+        exist = os.path.isfile(filepath)
+        return exist
 
+    @classmethod
+    def exist_dir(cls):
+        if not os.path.exists(PATH):
+            os.makedirs(PATH)
 
 class Translations:
     def __init__(self):
@@ -193,16 +202,6 @@ class Cars(Translations):
         self.dir_path = PATH
         self.filepath = self.dir_path + '/' + self.filename + self.filetype
 
-    @classmethod
-    def exist_file(cls, filepath):
-        exist = os.path.isfile(filepath)
-        return exist
-
-    @classmethod
-    def exist_dir(cls):
-        if not os.path.exists(PATH):
-            os.makedirs(PATH)
-
     def write_data(self):
         fieldnames = ['first_name', 'last_name', 'id', 'brand', 'model', 'year', 'plate']
         data = [{'first_name': self.first_name,
@@ -213,7 +212,7 @@ class Cars(Translations):
                  'year': self.year,
                  'plate': self.plate}]
 
-        if Cars.exist_file(self.filepath):
+        if Data.exist_file(self.filepath):
             with open(PATH + '/data.csv', 'a', newline='') as file:
                 csv_writer = csv.DictWriter(file, fieldnames=fieldnames)
                 for i in data:
@@ -228,7 +227,7 @@ class Cars(Translations):
 
 def app():
     car = Cars()
-    Cars.exist_dir()
+    Data.exist_dir()
     car.write_data()
 
 
