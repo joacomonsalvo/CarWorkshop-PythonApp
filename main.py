@@ -203,33 +203,69 @@ class Cars(Translations):
         if not os.path.exists(PATH):
             os.makedirs(PATH)
 
-    def write_data(self):
-        fieldnames = ['first_name', 'last_name', 'id', 'brand', 'model', 'year', 'plate']
-        data = [{'first_name': self.first_name,
-                 'last_name': self.last_name,
-                 'id': self.owner_id,
-                 'brand': self.brand,
-                 'model': self.model,
-                 'year': self.year,
-                 'plate': self.plate}]
-
-        if Cars.exist_file(self.filepath):
-            with open(PATH + '/data.csv', 'a', newline='') as file:
-                csv_writer = csv.DictWriter(file, fieldnames=fieldnames)
-                for i in data:
-                    csv_writer.writerow(i)
+    @classmethod
+    def writerow_if(cls, csv_writer):
+        writepath = PATH + '/' + Data.file_name() + FILETYPE
+        if Cars.exist_file(writepath):    
+            pass  
         else:
-            with open(PATH + '/data.csv', 'a', newline='') as file:
-                csv_writer = csv.DictWriter(file, fieldnames=fieldnames)
-                csv_writer.writeheader()  # Only execute if the file does not exist
-                for i in data:
-                    csv_writer.writerow(i)
+            csv_writer.writeheader()
+    
+    def data_dict(self):
+        if JSON_LIST[1] == 'English':   
+            data = [{'First Name': self.first_name,
+                'Last Name': self.last_name,
+                'ID': self.owner_id,
+                'Brand': self.brand,
+                'Model': self.model,
+                'Year': self.year,
+                'License Plate': self.plate}]
+                
+            return data
+
+        elif JSON_LIST[1] == 'Spanish':
+            data = [{'Nombre': self.first_name,
+                'Apellido': self.last_name,
+                'DNI': self.owner_id,
+                'Marca': self.brand,
+                'Modelo': self.model,
+                'Anualidad': self.year,
+                'Licencia': self.plate}]
+                
+            return data
+        return data
+    
+    
+class Writter(Cars):
+    def __init__(self):
+        user2 = Cars()
+        self.fieldnames = Writter.fieldnames1()
+        self.data = user2.data_dict()
+
+    @classmethod
+    def fieldnames1(cls):
+        if JSON_LIST[1] == 'English':  
+            fieldnames = ['First Name', 'Last Name', 'ID', 'Brand', 'Model', 'Year', 'License Plate']
+            return fieldnames
+
+        elif JSON_LIST[1] == 'Spanish':
+            fieldnames = ['Nombre', 'Apellido', 'DNI', 'Marca', 'Modelo', 'Anualidad', 'Licencia']
+            return fieldnames
+            
+        return fieldnames
+
+    def write_data(self):
+        with open(PATH + '/data.csv', 'a', newline='') as file:
+            csv_writer = csv.DictWriter(file, fieldnames=self.fieldnames)
+            Cars.writerow_if(csv_writer)
+            for i in self.data:
+                csv_writer.writerow(i)        
 
 
 def app():
-    car = Cars()
     Cars.exist_dir()
-    car.write_data()
+    user = Writter()
+    user.write_data()
 
 
 app()
