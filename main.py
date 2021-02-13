@@ -202,14 +202,6 @@ class Cars(Translations):
     def exist_dir(cls):
         if not os.path.exists(PATH):
             os.makedirs(PATH)
-
-    @classmethod
-    def writerow_if(cls, csv_writer):
-        writepath = PATH + '/' + Data.file_name() + FILETYPE
-        if Cars.exist_file(writepath):    
-            pass  
-        else:
-            csv_writer.writeheader()
     
     def data_dict(self):
         if JSON_LIST[1] == 'English':   
@@ -244,22 +236,35 @@ class Writter(Cars):
 
     @classmethod
     def fieldnames1(cls):
-        if JSON_LIST[1] == 'English':  
+        user_language = JSON_LIST[1]
+        if user_language == 'English':  
             fieldnames = ['First Name', 'Last Name', 'ID', 'Brand', 'Model', 'Year', 'License Plate']
             return fieldnames
 
-        elif JSON_LIST[1] == 'Spanish':
+        elif user_language == 'Spanish':
             fieldnames = ['Nombre', 'Apellido', 'DNI', 'Marca', 'Modelo', 'Anualidad', 'Licencia']
             return fieldnames
             
         return fieldnames
-
+    
     def write_data(self):
-        with open(PATH + '/data.csv', 'a', newline='') as file:
-            csv_writer = csv.DictWriter(file, fieldnames=self.fieldnames)
-            Cars.writerow_if(csv_writer)
-            for i in self.data:
-                csv_writer.writerow(i)        
+        writepath = PATH + '/' + Data.file_name() + FILETYPE
+        
+        if Cars.exist_file(writepath):    
+            
+            with open(PATH + '/data.csv', 'a', newline='') as file:
+                csv_writer = csv.DictWriter(file, fieldnames=self.fieldnames) 
+                
+                for i in self.data:
+                    csv_writer.writerow(i)    
+        else:
+            
+            with open(PATH + '/data.csv', 'a', newline='') as file:  
+                csv_writer = csv.DictWriter(file, fieldnames=self.fieldnames)
+                csv_writer.writeheader()
+                
+                for i in self.data:
+                    csv_writer.writerow(i)    
 
 
 def app():
