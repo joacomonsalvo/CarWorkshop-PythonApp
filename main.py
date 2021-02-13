@@ -21,7 +21,7 @@ class Data:
 
     @classmethod
     def file_name(cls):
-        filename = 'carsDATA'
+        filename = 'data'
         return filename
 
 
