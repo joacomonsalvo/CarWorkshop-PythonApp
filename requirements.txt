@@ -1,4 +1,4 @@
 os
 csv
 json
-googletrans
+googletrans==3.1.0a0
