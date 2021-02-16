@@ -3,7 +3,7 @@ import os
 
 data_list = []
 USERNAME = os.getlogin()
-PATH = 'C:/Users/{}/Documents/Projects/PYTHON/Vehicles/'.format(USERNAME)
+PATH = 'C:/Users/{}/Documents/Projects/Vehicles/config/'.format(USERNAME)
 
 
 def start():

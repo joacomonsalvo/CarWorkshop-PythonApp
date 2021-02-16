@@ -14,7 +14,7 @@ class Data:
 
     @classmethod
     def settings(cls):
-        with open(PATH + '/data_file' + SETTINGS_FILETYPE, 'r') as json_file:
+        with open(PATH + '/config/data_file' + SETTINGS_FILETYPE, 'r') as json_file:
             data = json.load(json_file)
             JSON_LIST.append(data['country'])
             JSON_LIST.append(data['language'])
