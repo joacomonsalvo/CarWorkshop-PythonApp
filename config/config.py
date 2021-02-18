@@ -1,18 +1,14 @@
 import json
 import os
 
-data_list = []
 USERNAME = os.getlogin()
 PATH = 'C:/Users/{}/Documents/Projects/Vehicles/config/'.format(USERNAME)
+data_list = []
 
 
 def start():
     print("Let's start configuring the app: ")
     print('Before that you need to accept the terms and conditions of the app\r\n')
-
-    print('TERMS AND CONDITIONS \r\n')
-    #  todo Add terms and conditions
-
 
 
 def choose_idiom():
@@ -59,11 +55,11 @@ def write_in():
         json.dump(dict0, outfile, indent=2)
 
 
-def app():
+def config():
     start()
     choose_idiom()
     country_plate()
     write_in()
 
 
-app()
+config()
