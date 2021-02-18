@@ -3,6 +3,7 @@ import os
 
 USERNAME = os.getlogin()
 PATH = 'C:/Users/{}/Documents/Projects/Vehicles/config/'.format(USERNAME)
+
 data_list = []
 
 
@@ -15,6 +16,7 @@ def choose_idiom():
     print('Select your language: ')
     print('1) Spanish')
     print('2) English\r\n')
+    
     option = int(input('Type the number of the option you want to chose:\r\n'))
 
     if option == 1:
@@ -32,6 +34,7 @@ def country_plate():
     print('Select your country for the plate design: ')
     print('1) Argentina')
     print('2) United States\r\n')
+    
     plate = int(input('Type the number of the option you want to chose:\r\n'))
 
     if plate == 1:
