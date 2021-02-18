@@ -7,6 +7,7 @@ FILETYPE = '.csv'
 SETTINGS_FILETYPE = '.json'
 USERNAME = os.getlogin()
 PATH = 'C:/Users/{}/Documents/Projects/Vehicles'.format(USERNAME)
+
 config = []
 
 
@@ -28,6 +29,7 @@ class Data:
 class Translations:
     def __init__(self):
         Data.settings()
+        
         self.username = USERNAME
         self.translator = Translator()
         self.country = config[0]
@@ -231,6 +233,7 @@ class Cars(Translations):
 class Writter(Cars):
     def __init__(self):
         user2 = Cars()
+        
         self.fieldnames = Writter.fieldnames1()
         self.data = user2.data_dict()
 
