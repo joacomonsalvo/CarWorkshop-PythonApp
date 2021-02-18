@@ -7,7 +7,7 @@ FILETYPE = '.csv'
 SETTINGS_FILETYPE = '.json'
 USERNAME = os.getlogin()
 PATH = 'C:/Users/{}/Documents/Projects/Vehicles'.format(USERNAME)
-JSON_LIST = []
+config = []
 
 
 class Data:
@@ -16,8 +16,8 @@ class Data:
     def settings(cls):
         with open(PATH + '/config/data_file' + SETTINGS_FILETYPE, 'r') as json_file:
             data = json.load(json_file)
-            JSON_LIST.append(data['country'])
-            JSON_LIST.append(data['language'])
+            config.append(data['country'])
+            config.append(data['language'])
 
     @classmethod
     def file_name(cls):
@@ -30,8 +30,8 @@ class Translations:
         Data.settings()
         self.username = USERNAME
         self.translator = Translator()
-        self.country = JSON_LIST[0]
-        self.language = JSON_LIST[1]
+        self.country = config[0]
+        self.language = config[1]
 
     def start(self):
         if self.language == 'Spanish':
@@ -204,7 +204,7 @@ class Cars(Translations):
             os.makedirs(PATH)
     
     def data_dict(self):
-        if JSON_LIST[1] == 'English':   
+        if config[1] == 'English':   
             data = [{'First Name': self.first_name,
                 'Last Name': self.last_name,
                 'ID': self.owner_id,
@@ -215,7 +215,7 @@ class Cars(Translations):
                 
             return data
 
-        elif JSON_LIST[1] == 'Spanish':
+        elif config[1] == 'Spanish':
             data = [{'Nombre': self.first_name,
                 'Apellido': self.last_name,
                 'DNI': self.owner_id,
@@ -236,7 +236,7 @@ class Writter(Cars):
 
     @classmethod
     def fieldnames1(cls):
-        user_language = JSON_LIST[1]
+        user_language = config[1]
         if user_language == 'English':  
             fieldnames = ['First Name', 'Last Name', 'ID', 'Brand', 'Model', 'Year', 'License Plate']
             return fieldnames
