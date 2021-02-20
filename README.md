@@ -18,3 +18,9 @@ it.
 
 Python is the programming language of this project for one main reason, it's
 the one i'm learning actually and I wanted to dedicate the full project to it.
+
+## Ideas to be implemented
+
+First of all, when the visual interface in finished, the next step would be to
+make a ML or DL model to detect 3d model of cars, and if the data base has not
+the 3d model of the car, generate one with some images.
