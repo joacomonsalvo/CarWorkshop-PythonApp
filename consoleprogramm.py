@@ -1,3 +1,5 @@
+# Original file without visual interface, this file only contains the terminal programm
+
 import os
 import csv
 import json
