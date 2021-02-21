@@ -14,8 +14,6 @@ dedicate to that programming language. That's why, the visual interface of
 the app is done with it, regardless of whether it is not the best option for
 it.
 
-### Why Python?
-
 Python is the programming language of this project for one main reason, it's
 the one i'm learning actually and I wanted to dedicate the full project to it.
 
