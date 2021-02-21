@@ -21,6 +21,6 @@ def windows(xpos, ypos, width, hight):
     label.move(100, 100)
 
     win.show() #Show the window
-    sys.exit(app.exec_()) # Make 'close' bottom work
+    sys.exit(app.exec_()) # Make cross bottom work
 
 windows(xpos, ypos, width, hight)
