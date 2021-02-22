@@ -14,7 +14,7 @@ class MyWindow(QMainWindow):
         self.init_ui()
 
     def init_ui(self):
-        "Fuck DocString"
+        "Create Label and button1"
         self.label = QtWidgets.QLabel(self)
         self.label.setText('My first Label')
         self.label.move(100, 100)
