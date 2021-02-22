@@ -25,10 +25,9 @@ class MyWindow(QMainWindow):
         self.button.clicked.connect(self.click)
 
     def click(self):
-        "Click"
+        "Click action"
         self.label.setText("You pressed the button")
         self.update()
-
 
     def update(self):
         "Update Size"
