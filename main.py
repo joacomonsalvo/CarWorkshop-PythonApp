@@ -38,7 +38,7 @@ def windows():
     "Window"
     app = QApplication(sys.argv) # Config set up for qt app
     win = MyWindow()
-    win.show() #Show the window
+    win.show()
     sys.exit(app.exec_()) # Make cross bottom work
 
 windows()
