@@ -127,7 +127,7 @@ class Translations:
             if year.isdigit():
                 return year
             else:
-                content2 = self.translator.translate('Year must be written with just numbers', src='en',
+                content2 = self.translator.translate('Year must be written with numbers', src='en',
                                                      dest='es')
                 year_valid = content2.text
 
@@ -144,7 +144,7 @@ class Translations:
             if year.isdigit():
                 return year
             else:
-                content2 = self.translator.translate('The year must be written with just numbers', src='en',
+                content2 = self.translator.translate('Year must be written with numbers', src='en',
                                                      dest='en')
                 year_valid = content2.text
 
@@ -154,6 +154,7 @@ class Translations:
                 year_class.year()
 
     def digit(self):
+        "ID Translation and Processing"
         translation = Translator()
         identification = 'ID' if self.language == 'English' else 'DNI'
         owner_id = input('{}: \r\n'.format(identification))
@@ -186,6 +187,7 @@ class Translations:
 
 
 class Cars(Translations):
+    "Cars Data class and file/dir methods"
 
     def __init__(self):
         super().__init__()
@@ -208,15 +210,18 @@ class Cars(Translations):
 
     @classmethod
     def exist_file(cls, filepath):
+        "Exist File"
         exist = os.path.isfile(filepath)
         return exist
 
     @classmethod
     def exist_dir(cls):
+        "Exist Dir"
         if not os.path.exists(PATH):
             os.makedirs(PATH)
     
     def data_dict(self):
+        "Dict Data by Language"
         if config[1] == 'English':   
             data = [{'First Name': self.first_name,
                 'Last Name': self.last_name,
@@ -224,8 +229,7 @@ class Cars(Translations):
                 'Brand': self.brand,
                 'Model': self.model,
                 'Year': self.year,
-                'License Plate': self.plate}]
-                
+                'License Plate': self.plate}]             
             return data
 
         elif config[1] == 'Spanish':
@@ -239,9 +243,9 @@ class Cars(Translations):
                 
             return data
         return data
-    
-    
+       
 class Writter(Cars):
+    "Final Data Processing"
     def __init__(self):
         user2 = Cars()
         
@@ -250,6 +254,7 @@ class Writter(Cars):
 
     @classmethod
     def fieldnames1(cls):
+        "Fieldnames by Language"
         user_language = config[1]
         if user_language == 'English':  
             fieldnames = ['First Name', 'Last Name', 'ID', 'Brand', 'Model', 'Year', 'License Plate']
@@ -257,31 +262,28 @@ class Writter(Cars):
 
         elif user_language == 'Spanish':
             fieldnames = ['Nombre', 'Apellido', 'DNI', 'Marca', 'Modelo', 'Anualidad', 'Licencia']
-            return fieldnames
-            
+            return fieldnames   
         return fieldnames
     
     def write_data(self):
+        "Write Data"
         writepath = PATH + '/' + Data.file_name() + FILETYPE
         
         if Cars.exist_file(writepath):    
-            
             with open(PATH + '/data.csv', 'a', newline='') as file:
-                csv_writer = csv.DictWriter(file, fieldnames=self.fieldnames) 
-                
+                csv_writer = csv.DictWriter(file, fieldnames=self.fieldnames)    
                 for i in self.data:
                     csv_writer.writerow(i)    
         else:
-            
             with open(PATH + '/data.csv', 'a', newline='') as file:  
                 csv_writer = csv.DictWriter(file, fieldnames=self.fieldnames)
-                csv_writer.writeheader()
-                
+                csv_writer.writeheader()  
                 for i in self.data:
                     csv_writer.writerow(i)    
 
 
 def app():
+    "APP"
     Cars.exist_dir()
     user = Writter()
     user.write_data()
