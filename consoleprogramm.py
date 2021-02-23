@@ -53,6 +53,7 @@ class Translations:
             print(start_text + ': \r\n')
 
     def first_name(self):
+        "Translation of Input First Name message"
         if self.language == 'Spanish':
             content = self.translator.translate('Owner Fist Name', src='en', dest='es')
             first_name = content.text
@@ -65,6 +66,7 @@ class Translations:
             return firstname
 
     def last_name(self):
+        "Translation of Input Last Name message"
         if self.language == 'Spanish':
             content = self.translator.translate('Owner Last Name', src='en', dest='es')
             last_name = content.text
@@ -77,6 +79,7 @@ class Translations:
             return lastname
 
     def brand(self):
+        "Translation of Input Brand message"
         if self.language == 'Spanish':
             content = self.translator.translate('Vehicle brand', src='en', dest='es')
             brand_text = content.text
@@ -89,6 +92,7 @@ class Translations:
             return brand
 
     def model(self):
+        "Translation of Input Model message"
         if self.language == 'Spanish':
             content = self.translator.translate('Vehicle model', src='en', dest='es')
             model_text = content.text
@@ -101,6 +105,7 @@ class Translations:
             return model
 
     def plate(self):
+        "Translation of Input Plate message"
         if self.language == 'Spanish':
             content = self.translator.translate('License Plate', src='en', dest='es')
             plate_text = content.text
@@ -113,6 +118,7 @@ class Translations:
             return plate
 
     def year(self):
+        "Translation of Input Year message"
         if self.language == 'Spanish':
             content1 = self.translator.translate('Year', src='en', dest='es')
             year_text = content1.text
@@ -121,7 +127,7 @@ class Translations:
             if year.isdigit():
                 return year
             else:
-                content2 = self.translator.translate('The year must be written with just numbers', src='en',
+                content2 = self.translator.translate('Year must be written with just numbers', src='en',
                                                      dest='es')
                 year_valid = content2.text
 
