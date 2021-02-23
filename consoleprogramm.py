@@ -41,14 +41,14 @@ class Translations:
         self.language = config[1]
 
     def start(self):
+        "Start message"
+        start_msg = "Let's start with some information about your vehicle"
         if self.language == 'Spanish':
-            content1 = self.translator.translate("Let's start with some information about your vehicle",
-                                                 src='en', dest='es')
+            content1 = self.translator.translate(start_msg, src='en', dest='es')
             start_text = content1.text
             print(start_text + ': \r\n')
         elif self.language == 'English':
-            content1 = self.translator.translate("Let's start with some information about your vehicle",
-                                                 src='en', dest='en')
+            content1 = self.translator.translate(start_msg, src='en', dest='en')                                          
             start_text = content1.text
             print(start_text + ': \r\n')
 
