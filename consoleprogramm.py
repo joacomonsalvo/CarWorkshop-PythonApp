@@ -34,7 +34,7 @@ class Data:
 class Translations:
     "Translate all inputs"
     def __init__(self):
-        Data.settings()      
+        Data.settings()
         self.username = USERNAME
         self.translator = Translator()
         self.country = config[0]
@@ -48,7 +48,7 @@ class Translations:
             start_text = content1.text
             print(start_text + ': \r\n')
         elif self.language == 'English':
-            content1 = self.translator.translate(start_msg, src='en', dest='en')                                          
+            content1 = self.translator.translate(start_msg, src='en', dest='en')              
             start_text = content1.text
             print(start_text + ': \r\n')
 
