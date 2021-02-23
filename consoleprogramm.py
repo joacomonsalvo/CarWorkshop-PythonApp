@@ -257,7 +257,7 @@ class Writter(Cars):
         "Fieldnames by Language"
         user_language = config[1]
         if user_language == 'English':
-            fieldnames = ['First Name', 'Last Name', 'ID', 'Brand', 'Model', 'Year', 'License Plate']
+            fieldnames = ['First Name','Last Name', 'ID', 'Brand', 'Model', 'Year', 'License Plate']
             return fieldnames
 
         elif user_language == 'Spanish':
