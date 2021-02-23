@@ -48,7 +48,7 @@ class Translations:
             start_text = content1.text
             print(start_text + ': \r\n')
         elif self.language == 'English':
-            content1 = self.translator.translate(start_msg, src='en', dest='en')              
+            content1 = self.translator.translate(start_msg, src='en', dest='en')
             start_text = content1.text
             print(start_text + ': \r\n')
 
@@ -219,17 +219,17 @@ class Cars(Translations):
         "Exist Dir"
         if not os.path.exists(PATH):
             os.makedirs(PATH)
-    
+
     def data_dict(self):
         "Dict Data by Language"
-        if config[1] == 'English':   
+        if config[1] == 'English':
             data = [{'First Name': self.first_name,
                 'Last Name': self.last_name,
                 'ID': self.owner_id,
                 'Brand': self.brand,
                 'Model': self.model,
                 'Year': self.year,
-                'License Plate': self.plate}]             
+                'License Plate': self.plate}]
             return data
 
         elif config[1] == 'Spanish':
@@ -240,15 +240,15 @@ class Cars(Translations):
                 'Modelo': self.model,
                 'Anualidad': self.year,
                 'Licencia': self.plate}]
-                
+
             return data
         return data
-       
+
 class Writter(Cars):
     "Final Data Processing"
     def __init__(self):
         user2 = Cars()
-        
+
         self.fieldnames = Writter.fieldnames1()
         self.data = user2.data_dict()
 
@@ -256,30 +256,30 @@ class Writter(Cars):
     def fieldnames1(cls):
         "Fieldnames by Language"
         user_language = config[1]
-        if user_language == 'English':  
+        if user_language == 'English':
             fieldnames = ['First Name', 'Last Name', 'ID', 'Brand', 'Model', 'Year', 'License Plate']
             return fieldnames
 
         elif user_language == 'Spanish':
             fieldnames = ['Nombre', 'Apellido', 'DNI', 'Marca', 'Modelo', 'Anualidad', 'Licencia']
-            return fieldnames   
+            return fieldnames
         return fieldnames
-    
+
     def write_data(self):
         "Write Data"
         writepath = PATH + '/' + Data.file_name() + FILETYPE
-        
-        if Cars.exist_file(writepath):    
+
+        if Cars.exist_file(writepath):
             with open(PATH + '/data.csv', 'a', newline='') as file:
-                csv_writer = csv.DictWriter(file, fieldnames=self.fieldnames)    
-                for i in self.data:
-                    csv_writer.writerow(i)    
-        else:
-            with open(PATH + '/data.csv', 'a', newline='') as file:  
                 csv_writer = csv.DictWriter(file, fieldnames=self.fieldnames)
-                csv_writer.writeheader()  
                 for i in self.data:
-                    csv_writer.writerow(i)    
+                    csv_writer.writerow(i)
+        else:
+            with open(PATH + '/data.csv', 'a', newline='') as file:
+                csv_writer = csv.DictWriter(file, fieldnames=self.fieldnames)
+                csv_writer.writeheader()
+                for i in self.data:
+                    csv_writer.writerow(i)
 
 
 def app():
