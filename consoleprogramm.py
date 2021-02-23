@@ -162,7 +162,7 @@ class Translations:
         if owner_id.isdigit():
             return owner_id
         else:
-            pronoun = 'the'
+            pronoun = 'The'
             sentence = 'must contain only numbers'
             obj = Translations()
 
@@ -176,8 +176,8 @@ class Translations:
                 print("{} {} {}".format(pronoun, identification, sentence))
                 obj.digit()
             elif self.language == 'English':
-                content1 = translation.translate(pronoun, src='en', dest='es')
-                content2 = translation.translate(sentence, src='en', dest='es')
+                content1 = translation.translate(pronoun, src='en', dest='en')
+                content2 = translation.translate(sentence, src='en', dest='en')
 
                 pronoun = content1.text
                 sentence = content2.text
@@ -247,6 +247,7 @@ class Cars(Translations):
 class Writter(Cars):
     "Final Data Processing"
     def __init__(self):
+        super().__init__()
         user2 = Cars()
 
         self.fieldnames = Writter.fieldnames1()
