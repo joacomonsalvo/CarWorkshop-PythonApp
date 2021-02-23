@@ -1,4 +1,4 @@
-# Original file without visual interface, this file only contains the terminal programm
+"Modules"
 
 import os
 import csv
@@ -14,9 +14,11 @@ config = []
 
 
 class Data:
+    "This class contains the fundamental data methods"
 
     @classmethod
     def settings(cls):
+        "Gets language & country from json file"
         with open(PATH + '/config/data_file' + SETTINGS_FILETYPE, 'r') as json_file:
             data = json.load(json_file)
             config.append(data['country'])
@@ -24,14 +26,15 @@ class Data:
 
     @classmethod
     def file_name(cls):
+        "Return filename"
         filename = 'data'
         return filename
 
 
 class Translations:
+    "Translate all inputs"
     def __init__(self):
-        Data.settings()
-        
+        Data.settings()      
         self.username = USERNAME
         self.translator = Translator()
         self.country = config[0]
