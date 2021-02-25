@@ -8,15 +8,16 @@ data_list = []
 
 
 def start():
+    "Start messages"
     print("Let's start configuring the app: ")
     print('Before that you need to accept the terms and conditions of the app\r\n')
 
 
 def choose_idiom():
+    'Select App Language'
     print('Select your language: ')
     print('1) Spanish')
-    print('2) English\r\n')
-    
+    print('2) English\r\n')  
     option = int(input('Type the number of the option you want to chose:\r\n'))
 
     if option == 1:
@@ -30,11 +31,11 @@ def choose_idiom():
         choose_idiom()
 
 
-def country_plate():  
+def country_plate():
+    "Select Country"
     print('Select your country for the plate design: ')
     print('1) Argentina')
-    print('2) United States\r\n')
-    
+    print('2) United States\r\n') 
     plate = int(input('Type the number of the option you want to chose:\r\n'))
 
     if plate == 1:
@@ -49,6 +50,7 @@ def country_plate():
 
 
 def write_in():
+    "Write data in .json"
     dict0 = {
         'language': data_list[0],
         'country': data_list[1]
@@ -59,6 +61,7 @@ def write_in():
 
 
 def config():
+    "CONFIG APP"
     start()
     choose_idiom()
     country_plate()
