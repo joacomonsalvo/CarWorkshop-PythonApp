@@ -1,5 +1,4 @@
 "Modules"
-
 import os
 import csv
 import json
@@ -11,6 +10,7 @@ USERNAME = os.getlogin()
 PATH = 'C:/Users/{}/Documents/Projects/Vehicles'.format(USERNAME)
 
 config = []
+datadict = []
 
 
 class Data:
@@ -208,6 +208,16 @@ class Cars(Translations):
         self.dir_path = PATH
         self.filepath = self.dir_path + '/' + self.filename + self.filetype
 
+        datadict.append(self.first_name)
+        datadict.append(self.last_name)
+        datadict.append(self.owner_id)
+        datadict.append(self.brand)
+        datadict.append(self.model)
+        datadict.append(self.year)
+        datadict.append(self.plate)
+
+        self.datadict = datadict
+
     @classmethod
     def exist_file(cls, filepath):
         "Exist File"
@@ -220,38 +230,13 @@ class Cars(Translations):
         if not os.path.exists(PATH):
             os.makedirs(PATH)
 
-    def data_dict(self):
-        "Dict Data by Language"
-        if config[1] == 'English':
-            data = [{'First Name': self.first_name,
-                'Last Name': self.last_name,
-                'ID': self.owner_id,
-                'Brand': self.brand,
-                'Model': self.model,
-                'Year': self.year,
-                'License Plate': self.plate}]
-            return data
-
-        elif config[1] == 'Spanish':
-            data = [{'Nombre': self.first_name,
-                'Apellido': self.last_name,
-                'DNI': self.owner_id,
-                'Marca': self.brand,
-                'Modelo': self.model,
-                'Anualidad': self.year,
-                'Licencia': self.plate}]
-
-            return data
-        return data
 
 class Writter(Cars):
     "Final Data Processing"
     def __init__(self):
         super().__init__()
-        user2 = Cars()
-
         self.fieldnames = Writter.fieldnames1()
-        self.data = user2.data_dict()
+        self.data = Writter.data_dict()
 
     @classmethod
     def fieldnames1(cls):
@@ -265,6 +250,31 @@ class Writter(Cars):
             fieldnames = ['Nombre', 'Apellido', 'DNI', 'Marca', 'Modelo', 'Anualidad', 'Licencia']
             return fieldnames
         return fieldnames
+    
+    @classmethod
+    def data_dict(cls):
+        "Dict Data by Language"
+        if config[1] == 'English':
+            data = [{'First Name': datadict[0],
+                'Last Name': datadict[1],
+                'ID': datadict[2],
+                'Brand': datadict[3],
+                'Model': datadict[4],
+                'Year': datadict[5],
+                'License Plate': datadict[6]}]
+            return data
+
+        elif config[1] == 'Spanish':
+            data = [{'Nombre': datadict[0],
+                'Apellido': datadict[1],
+                'DNI': datadict[2],
+                'Marca': datadict[3],
+                'Modelo': datadict[4],
+                'Anualidad': datadict[5],
+                'Licencia': datadict[6]}]
+
+            return data
+        return data
 
     def write_data(self):
         "Write Data"
@@ -281,7 +291,6 @@ class Writter(Cars):
                 csv_writer.writeheader()
                 for i in self.data:
                     csv_writer.writerow(i)
-
 
 def app():
     "APP"
