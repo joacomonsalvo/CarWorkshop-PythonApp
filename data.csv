@@ -1,3 +1,3 @@
-Nombre,Apellido,DNI,Marca,Modelo,Anualidad,Licencia
-Joaquin,Monsalvo,00000000,Pontiac,Firebird,1978,firebird-666
-Ignacio,Aguirre,00000000,Opel,Astra,2000,Opel-2000
+First Name,Last Name,ID,Brand,Model,Year,License Plate
+Joaquin,Monsalvo,00000000,Pontiac,Firebird,1978,Firebird-666
+Joaquin,Monsalvo,00000000,Bmw,E36,1980,E36-0000
