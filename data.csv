@@ -1,3 +1,3 @@
-First Name,Last Name,ID,Brand,Model,Year,License Plate
-Joaquin,Monsalvo,00000000,Pontiac,Firebird,1978,Firebird-666
-Joaquin,Monsalvo,00000000,Bmw,E36,1980,E36-0000
+First Name,Last Name,ID,Brand,Model,Year,License Plate,Date
+Joaquin,Monsalvo,00000000,Pontiac,Firebird,1978,Firebird-666,2021-03-02 16:51:26.260445
+Ignacio,Aguirre,00000000,Opel,Astra,2000,Opel-2000,2021-03-02 16:51:55.299618
