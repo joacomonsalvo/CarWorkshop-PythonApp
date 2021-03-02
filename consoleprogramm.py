@@ -3,6 +3,7 @@ import os
 import csv
 import json
 from googletrans import Translator
+from datetime import datetime
 
 FILETYPE = '.csv'
 SETTINGS_FILETYPE = '.json'
@@ -202,6 +203,7 @@ class Cars(Translations):
         self.model = translations.model()
         self.year = translations.year()
         self.plate = translations.plate()
+        self.date = Cars.datetime_csv()
 
         self.filename = Data.file_name()
         self.filetype = FILETYPE
@@ -215,8 +217,14 @@ class Cars(Translations):
         datadict.append(self.model)
         datadict.append(self.year)
         datadict.append(self.plate)
+        datadict.append(self.date)
 
         self.datadict = datadict
+
+    @classmethod
+    def datetime_csv(cls):
+        now = datetime.now()
+        return now
 
     @classmethod
     def exist_file(cls, filepath):
@@ -243,11 +251,11 @@ class Writter(Cars):
         "Fieldnames by Language"
         user_language = config[1]
         if user_language == 'English':
-            fieldnames = ['First Name','Last Name', 'ID', 'Brand', 'Model', 'Year', 'License Plate']
+            fieldnames = ['First Name','Last Name', 'ID', 'Brand', 'Model', 'Year', 'License Plate', 'Date']
             return fieldnames
 
         elif user_language == 'Spanish':
-            fieldnames = ['Nombre', 'Apellido', 'DNI', 'Marca', 'Modelo', 'Anualidad', 'Licencia']
+            fieldnames = ['Nombre', 'Apellido', 'DNI', 'Marca', 'Modelo', 'Anualidad', 'Licencia', 'Fecha']
             return fieldnames
         return fieldnames
     
@@ -261,7 +269,8 @@ class Writter(Cars):
                 'Brand': datadict[3],
                 'Model': datadict[4],
                 'Year': datadict[5],
-                'License Plate': datadict[6]}]
+                'License Plate': datadict[6],
+                'Date': datadict[7]}]
             return data
 
         elif config[1] == 'Spanish':
@@ -271,7 +280,8 @@ class Writter(Cars):
                 'Marca': datadict[3],
                 'Modelo': datadict[4],
                 'Anualidad': datadict[5],
-                'Licencia': datadict[6]}]
+                'Licencia': datadict[6],
+                'Fecha': datadict[7]}]
 
             return data
         return data
